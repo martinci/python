@@ -2,8 +2,8 @@
 
 import sys
 
-# A min heap is a binary tree where each node data is smaller than all
-# the data in its subtree. Similarly, we have max heaps.
+# A min heap is a binary tree where each node's data is smaller than all
+# the data in its subtree. Analogously, we have max heaps.
 class MinHeap:
     size = 0
     # A heap can be implement as an array where a node with index i
@@ -34,7 +34,7 @@ class MinHeap:
     def bubble_up(self):
         idx = self.size - 1
         parent_idx = self.get_parent(self.size-1)
-        while idx !=0 and self.items[idx] < self.items[parent_idx]:
+        while idx != 0 and self.items[idx] < self.items[parent_idx]:
             self.swap(idx,parent_idx)
             idx = parent_idx
             parent_idx = self.get_parent(idx)
@@ -72,10 +72,10 @@ class MinHeap:
                     self.swap(idx, left_child)
                 break
                 
-    def get_parent(self,idx):
+    def get_parent(self, idx):
         return (idx-1)//2
     
-    def swap(self,i,j):
+    def swap(self, i, j):
         temp = self.items[i]
         self.items[i] = self.items[j]
         self.items[j] = temp 
@@ -92,7 +92,7 @@ class MaxHeap:
         
     # To insert an element we put at the end of the array and then
     # we make sure to restore the max heap property.
-    def insert(self,data):
+    def insert(self, data):
         self.items.append(data)
         self.size+=1
         self.bubble_up()
@@ -150,10 +150,10 @@ class MaxHeap:
                     self.swap(idx, left_child)
                 break
                 
-    def get_parent(self,idx):
+    def get_parent(self, idx):
         return (idx-1)//2
     
-    def swap(self,i,j):
+    def swap(self, i, j):
         temp = self.items[i]
         self.items[i] = self.items[j]
         self.items[j] = temp 
@@ -210,3 +210,4 @@ if __name__ == '__main__':
         temp = int(input().strip())
         runMedian.insert(temp)
         print('{:.1f}'.format(runMedian.median))
+        

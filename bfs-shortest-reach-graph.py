@@ -1,6 +1,5 @@
 class Graph:
- 
-    def __init__(self,n):
+    def __init__(self, n):
         self.size = n
         # indices are 0, ..., n-1
         # initialize a grid of connections
@@ -13,9 +12,7 @@ class Graph:
         self.grid[x][y] = 1
         self.grid[y][x] = 1
     
-    
-    
-    def find_all_distances(self,s):
+    def find_all_distances(self, s):
         # we need to keep track of the nodes we already visited. (Maybe we can do this with )
         processed = []
         current_layer = [s]
@@ -43,24 +40,27 @@ class Graph:
         # the result is contained in the distances dictionary.
         return None
     
-    def print_distances(self,s,w):
+    def print_distances(self, s, w):
         temp = []
         for i in (i for i in range(n) if i != s):
-            if (s,i) in self.distances:
-                temp.append(str(self.distances[s,i]*w))
+            if (s, i) in self.distances:
+                temp.append(str(self.distances[s, i]*w))
             else:
                 temp.append("-1")
         print(" ".join(temp))
-        
-t = int(input())
-for i in range(t):
-    n,m = [int(value) for value in input().split()]
-    graph = Graph(n)
-    for i in range(m):
-        x,y = [int(x) for x in input().split()]
-        graph.connect(x-1,y-1) 
-    s = int(input())
-    graph.find_all_distances(s-1)
-    # weight of edges is 6
-    graph.print_distances(s-1,6)
+
+
+if __name__ == "__main__":        
+    t = int(input())
+    for i in range(t):
+        n,m = [int(value) for value in input().split()]
+        graph = Graph(n)
+        for i in range(m):
+            x,y = [int(x) for x in input().split()]
+            # indeces start at 0
+            graph.connect(x-1,y-1) 
+        s = int(input())
+        graph.find_all_distances(s-1)
+        # weight of edges is 6
+        graph.print_distances(s-1, 6)
 

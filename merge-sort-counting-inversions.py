@@ -18,7 +18,7 @@ def naive_count_inversions(a):
 # merge_sort takes an array as input an returs the sorted version of arr.
 def mergesort(arr):
     n = len(arr)
-    #a will contain the sorted array
+    # a will contain the sorted array
     a = [e for e in arr]
     # we use temp as a global auxiliary variable
     temp = [0]*n

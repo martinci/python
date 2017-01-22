@@ -5,6 +5,7 @@
 # Finally, at the end of each word we include the character '*''
 # to denote that the end of a word. (not needed in this problem)
 class TriesNode:
+    # To save memory space we override the default dictionary.
     __slots__ = ["data", "children", "children_data", "word_count"]
     def __init__(self, data):
         self.data = data
@@ -19,43 +20,43 @@ class TriesNode:
             self.children.append(node)
             self.children_data.append(node.data)
         
+class Tries:
+    def __init__(self):
+        self.root = TriesNode('*')
+        
+    def add(self, string):
+        current = self.root
+        for c in string:
+            try:
+                idx = current.children_data.index(c)
+                current = current.children[idx]
+                current.word_count+=1
+            except ValueError:
+                temp = TriesNode(c)
+                current.add_child(temp)
+                current = temp
+                current.word_count+=1
 
-def add(string):
-    global root
-    current = root
-    for c in string:
-        try:
-            idx = current.children_data.index(c)
-            current = current.children[idx]
-            current.word_count+=1
-        except ValueError:
-            temp = TriesNode(c)
-            current.add_child(temp)
-            current = temp
-            current.word_count+=1
-
-
-def find(string):
-    global root
-    current = root
-    for c in string:
-        try:
-            idx = current.children_data.index(c)
-            current = current.children[idx]
-        except ValueError:
-            return 0
-    return current.word_count
+    def find_number(self, string):
+        current = self.root
+        for c in string:
+            try:
+                idx = current.children_data.index(c)
+                current = current.children[idx]
+            except ValueError:
+                return 0
+        return current.word_count
 
                 
 if __name__ == '__main__':
     n = int(input().strip())
-    root = TriesNode('*')
+    book = Tries()
     for _ in range(n):
         op, contact = input().strip().split()
         if op == 'add':
-            add(contact)
+            book.add(contact)
         elif op == 'find':
-            print(find(contact))
+            print(book.find_number(contact))
         else:
             print('Operation not recognized.')
             continue 

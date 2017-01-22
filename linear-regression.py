@@ -1,6 +1,6 @@
 # Program: Linear Regression from scratch.
 
-def dot_prod(a1,a2,n):
+def dot_prod(a1, a2, n):
     # given 2 arrays of same size n we compute their std euclidean dot product
     return sum([a1[i]*a2[i] for i in range(n)])
     
@@ -39,14 +39,14 @@ class LinearRegression:
     p = 0
     #number of observations in the training data
     n = 0
-    #step size for gradient descent
-    alpha = 0.1
     
     trainError = []
         
-    def __init__(self, max_iter):
+    def __init__(self, max_iter, alpha = 0.1):
         # X is the training data, Y is the trainning target, b are the weights
         self.max_iter = max_iter
+        #step size for gradient descent
+        self.alpha = alpha
         self.X = []
         self.Y = []
         self.b = []
@@ -57,7 +57,7 @@ class LinearRegression:
         else:
             print('You need to train me for this...')
             
-    def train(self,Y,X, display_error = False):
+    def fit(self, Y, X, display_error = False):
         self.n = len(X)
         self.p = len(X[0])
         self.X = X
@@ -102,8 +102,8 @@ if __name__ == '__main__':
         X.append([x])
         Y.append(y)
     X, m, s = normalize_data(X)
-    lm = LinearRegression(1000)
-    lm.train(Y,X)
+    lm = LinearRegression(1000, alpha=0.1)
+    lm.fit(Y,X)
     X_pred = [[80]]
     X_pred = transform(X_pred,m,s)
     Y_pred = lm.predict(X_pred)

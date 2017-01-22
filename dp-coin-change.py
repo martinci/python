@@ -1,7 +1,7 @@
 # make_change takes 2 parameters:
 #   coins: array of available values of coins.
 #   n: money amount.
-# Return: number of ways to make change for n
+# Return --> number of ways to make change for n
 def make_change(coins,n):
     l = len(coins)
     if l == 0:
