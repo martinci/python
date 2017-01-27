@@ -13,7 +13,7 @@ class MinHeap:
         
     # To insert an element we put at the end of the array and then
     # we make sure to restore the min heap property.
-    def insert(self,data):
+    def insert(self, data):
         self.items.append(data)
         self.size+=1
         self.bubble_up()
@@ -55,7 +55,7 @@ class MinHeap:
                 right_data = self.items[right_child]
                 # When we have both children, we compare and swap with
                 # the smallest one if needed.
-                if self.items[idx] <= min([left_data,right_data]):
+                if self.items[idx] <= min([left_data, right_data]):
                     break
                 if left_data < right_data:
                     self.swap(idx, left_child)
@@ -134,7 +134,7 @@ class MaxHeap:
                 right_data = self.items[right_child]
                 # When we have both children, we compare and swap with
                 # the smallest one if needed.
-                if self.items[idx] >= max([left_data,right_data]):
+                if self.items[idx] >= max([left_data, right_data]):
                     break
                 if left_data > right_data:
                     self.swap(idx, left_child)

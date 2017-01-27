@@ -16,6 +16,7 @@ def normalize_data(X):
     features = [[X[j][i] for j in range(n)] for i in range(p)]
     m = []
     s = []
+    
     for i in range(len(X[0])):
         m.append(mean(features[i]))
         s.append(std(features[i]))
@@ -23,6 +24,7 @@ def normalize_data(X):
     for i in range(len(X)):
         new_obs = [(X[i][j] - m[j])/s[j] for j in range(len(X[0]))]
         X_new.append(new_obs)
+        
     return [X_new, m, s]
 
 def transform(X,m,s):
@@ -39,7 +41,6 @@ class LinearRegression:
     p = 0
     #number of observations in the training data
     n = 0
-    
     trainError = []
         
     def __init__(self, max_iter, alpha = 0.1):
@@ -68,7 +69,7 @@ class LinearRegression:
         
         # We use gradient descent to minimize the RSS
         for _ in range(self.max_iter):
-            rss_aux = [-(self.Y[i] - dot_prod(self.b,[1] + self.X[i],p+1))/n for i in range(n)]
+            rss_aux = [-(self.Y[i] - dot_prod(self.b, [1] + self.X[i], p+1))/n for i in range(n)]
             #print('rss_aux = {}'.format(rss_aux))
             features = [[self.X[j][i] for j in range(n)] for i in range(p)]
             #print('features[0] = ',features[0])
