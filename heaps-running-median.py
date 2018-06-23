@@ -5,11 +5,11 @@ import sys
 # A min heap is a binary tree where each node's data is smaller than all
 # the data in its subtree. Analogously, we have max heaps.
 class MinHeap:
-    size = 0
     # A heap can be implement as an array where a node with index i
     # has (left and right) children 2*i + 1 and 2*i + 2.
     def __init__(self):
         self.items = []
+        self.size = 0
         
     # To insert an element we put at the end of the array and then
     # we make sure to restore the min heap property.
@@ -82,13 +82,12 @@ class MinHeap:
 
 
 ##################### MAX HEAP ###################
-class MaxHeap:
-    size = 0
-    
+class MaxHeap:   
     # A heap can be implement as an array where a node with index i
     # has (left and right) children 2*i + 1 and 2*i + 2.
     def __init__(self):
         self.items = []
+        self.size = 0
         
     # To insert an element we put at the end of the array and then
     # we make sure to restore the max heap property.
