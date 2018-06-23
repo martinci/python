@@ -35,14 +35,7 @@ def transform(X,m,s):
     return X_new
     
 class LinearRegression:
-    #before making predictions we need to train first
-    is_trained = False
-    #number of features
-    p = 0
-    #number of observations in the training data
-    n = 0
-    trainError = []
-        
+     
     def __init__(self, max_iter, alpha = 0.1):
         # X is the training data, Y is the trainning target, b are the weights
         self.max_iter = max_iter
@@ -51,6 +44,10 @@ class LinearRegression:
         self.X = []
         self.Y = []
         self.b = []
+        self.is_trained = False
+        self.p = 0 # number of features
+        self.n = 0 # number of observations
+        self.trainError = []
         
     def rss(self):
         if self.is_trained:
